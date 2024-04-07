@@ -7,7 +7,7 @@ pipeline {
                             // Define the name of the Docker image
                             DOCKER_IMAGE_NAME = "kashmai"
                             // Define SonarQube URL (if applicable)
-                            // SONAR_URL = "http://40.86.186.123:9000/"
+                            SONAR_URL = "http://40.86.186.123:9000/"
             }
 
             stages {
