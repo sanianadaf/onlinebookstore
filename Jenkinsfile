@@ -53,7 +53,7 @@ pipeline {
                                         steps {
                                                     // Build Docker image
                                                     script {
-                                                                docker.build(env.DOCKER_IMAGE_NAME)
+                                                                sudo('docker build -t ' + env.DOCKER_IMAGE_NAME)
                                                     }
                                                 }
                             }
