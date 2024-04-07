@@ -32,6 +32,19 @@ pipeline {
                                                 sh "mvn clean verify sonar:sonar -Dsonar.projectKey='demo' -Dsonar.host.url='${SONAR_URL}' -Dsonar.login=sqp_25cc2a8d230eabbb45e4999cd89e710023ac3e54"        
                                         }         
                                 }
+                        steps {
+                         echo "deploy stage"
+                          deploy adapters: [tomcat9 (
+                                     credentialsId: 'Tomcat_deploy',
+                                      path: '',
+                                       url: 'http://40.86.187.161:8088/'
+                                      )],
+                                      contextPath: 'test',
+                                       onFailure: 'false',
+                                          war: '**/*.war'
+                                  }
+                         }
+
 
 
                             // Build Docker Image stage: Build the Docker image
