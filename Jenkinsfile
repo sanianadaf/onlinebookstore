@@ -5,7 +5,7 @@ pipeline {
                             // Define Docker Hub credentials
                             DOCKERHUB_CREDENTIALS = credentials('docker')
                             // Define the name of the Docker image
-                            DOCKER_IMAGE_NAME = "kashmai"
+                            DOCKER_IMAGE_NAME = "im_img"
                             // Define SonarQube URL (if applicable)
                             SONAR_URL = "http://40.86.186.123:9000/"
             }
@@ -50,11 +50,11 @@ pipeline {
 
                             // Build Docker Image stage: Build the Docker image
                             stage('Build Docker Image') {
-                                                steps {
-                                                                        // Build Docker image
-                                                                        script {
-                                                                                                    docker.build(env.DOCKER_IMAGE_NAME)
-                                                                        }
+                                        steps {
+                                                    // Build Docker image
+                                                    script {
+                                                                docker.build(env.DOCKER_IMAGE_NAME)
+                                                    }
                                                 }
                             }
                             // Login to Docker Hub stage: Log in to Docker Hub using credentials
@@ -75,9 +75,9 @@ pipeline {
                             stage('Push Image to Docker Hub') {         
                                                 steps {
                                                                         // Tag the Docker image
-                                                                        sh "docker tag $DOCKER_IMAGE_NAME $DOCKERHUB_USERNAME/first:tag2"
+                                                                        sh "docker tag $DOCKER_IMAGE_NAME $DOCKERHUB_USERNAME/first:tag$BUILD_NUMBER"
                                                                         // Push the Docker image to Docker Hub
-                                                                        sh "docker push $DOCKERHUB_USERNAME/first:tag2"
+                                                                        sh "docker push $DOCKERHUB_USERNAME/first:$BUIL_NUMBER"
                                                                         echo 'Push Image Completed'       
                                                 }           
                             }    
