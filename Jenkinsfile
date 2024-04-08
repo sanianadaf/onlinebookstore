@@ -9,6 +9,9 @@ pipeline {
                             // Define SonarQube URL (if applicable)
                             SONAR_URL = "http://40.86.186.123:9000/"
             }
+            triggers {
+                        cron('0 21 * * *')
+            }
 
             stages {
                             // Checkout stage: Check out the code from the Git repository
